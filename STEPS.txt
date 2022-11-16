@@ -1,0 +1,82 @@
+1- In Terminal, route to file to work on. Code . to open VS Code
+2- Create APP folder, and 4 files - config.py, forms.py, helpers.py, models.py
+3- Inside APP folder, create 5 folders(api, authentication, site, static, templates) & __init__.py
+4- Config.py - helps computer and app talk to eachother
+5- forms.py - ensures users are using correct data, ie correct email
+6- helpers.py - ensures users are allowed to go there
+7- models.py - automates databases using sql
+8- api - stores all the rules and communicates back and forth
+9- authentication - rules for users, log in log out
+10- site - rules for website, what to load 
+11- static - css and images. Make main.css file
+12- templates - html templates to automate the site
+13- __init__.py - runs the app, instantiate classes
+
+14- __init__.py. Import flask  /  app=Flask(__name__)  
+15- in site folder, create site_templates folder and routes.py file.
+16- in site_templates folder, make index.html and profile.html
+17- in templates folder, make base.html and forms.html
+
+18- base.html. Make basic page, background and nav bar. Add CSS link
+19- index.html. Make body of code, will combine later with base (extending code)
+20- insert extention code at top of index.html {% extends 'base.html' %} and at bottom {% endblock %}
+21- back to base.html.  Add {% block content %}{% endblock %} to insert index.html
+
+
+22- app/site/routes.py. Import Blueprint, render_template
+23- Add route(idea) to make website, __init__ will build it.
+       render_template to index.html and profile
+24- __init__.py. import site routes
+25- register the app blueprint for site  
+26- Fill in CSS info & images. index.html & profile.html, update image source
+
+27- config.py. Import os, dotenv. Define basedir. Draw connection from computer-app
+      defines virtual environment 
+       secret key is for security
+
+28- Make .env file in app folder.
+29- Make elephantSQL and add database info to DATABASE_URI !!! including 'sq' !!!
+30- __init__.py. Import config and configure app.config.from_object  
+
+31- in authentication folder, make auth_templates and routes.py
+32- in auth_templates, make sign_in.html & sign_up.html 
+33- sign_up.html. Create html to INCLUDE forms.html. will insert the form there
+34- sign_in.html. Create html 
+35- authentication/routes.py. import UserLoginForm & models & instantiate Blueprint
+36- forms.py. Import flask_WTF & wtforms & validators. Define class UserLoginForm
+37- models.py. Import all items. Create class for User and Contact and define info you want
+       for a user to create an account and for a contact to be added
+38- authentication/routes.py. Create route for signin, signout errors and requirements
+39- base.html. Update urls and insert python to remove logout button if logged in
+40- __init__.py. Import auth and register blueprint
+41- __init__.py. Import remaining items & apply below
+42- in API folder, make routes.py file
+43- api/routes.py. Import items
+44- __init__.py. import api, register blueprint. Import CORS and call. Import JSON from helpers
+45- helpers.py. import tools to verify users are allowed to be there. and define errors for tokens.
+
+46- Create a virtual environment. (python3 -m venv venv)
+47- activate virtual environment. windows: venv\Scripts\activate. mac: source venv/bin/activate
+48- conda activate 
+49- Install list of requirements using pip install. -U to update.
+50- pip freeze > requirements.txt to store a list of required installs
+51- create databases. flask db init. flask db migrate. flask db upgrade
+52- flask run
+53- api/routes.py. api.route.getdata test use imsomnia 
+54- write routes to create a contact, get a contact, update and delete
+
+55- Test insomnia. Create Request, create contact using POST. body-JSON. fill in address, email, name, phone_number
+    no coma on last item, but yes on all others
+    With flask running, add URL including /api/, in header add x-access-token with Bearer "token" from profile 
+    Content-Type should be application/json 
+    In elephantSQL under table queries, check if contact there
+
+    Get contact, same process, will print any loaded contacts
+
+    Update contact, use PUT, take the unique id for that contact and insert at end of URL. write updated item in {}.
+    
+    Delete contact, use DEL, take unique id in URL and access token
+
+56- Create Procfile file in app folder and include (web: gunicorn "app:app") for Heroku
+56- Commit whole folder to Github 
+    
